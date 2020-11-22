@@ -1,14 +1,14 @@
 import sys
-from random import randint
+from UI_py import Ui_MainWindow as new_version
+from random import randint, randrange
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, new_version):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.run)
         self.status = None
         self.flag = False
@@ -41,7 +41,7 @@ class MyWidget(QMainWindow):
                    or (w + a > other_w and w + a < other_w + j[3]):
                     you_can_draw = False
             if you_can_draw:
-                picture.setBrush(QColor('yellow'))
+                picture.setBrush(QColor(randrange(255), randrange(255), randrange(255)))
                 picture.drawEllipse(w, h, a, a)
                 self.picture_coords.append((h, w, a, a))
                 break
